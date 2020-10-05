@@ -1,4 +1,7 @@
+import { Request, Response, NextFunction } from 'express'
 import createError from 'http-errors'
+import ApiError from '../../utils/errors/ApiError'
+
 import {
     ValidationError,
     NotFoundError,
@@ -12,7 +15,7 @@ import {
 } from 'objection'
 
 // In this example `res` is an express response object.
-const dbErrorHandler = (err, req, res, next) => {
+const dbErrorHandler = (err: ApiError, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof ValidationError) {
         switch (err.type) {
             case 'ModelValidation':
