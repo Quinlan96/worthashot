@@ -1,7 +1,7 @@
 module.exports = {
 	apps: [
 		{
-			name: "whispr",
+			name: "worthashot",
 			script: "./dist/bin/www.js",
 			node_args: "-r dotenv/config",
 			env: {
