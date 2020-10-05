@@ -1,0 +1,18 @@
+.navbar-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 8rem;
+  height: 8em;
+  transform: rotate(-30deg);
+
+  span {
+    text-align: center;
+    line-height: 1;
+
+    &.navbar-title-main {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+  }
+}

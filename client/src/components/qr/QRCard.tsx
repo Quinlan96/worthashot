@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 
 import { get } from '../../services/api'
 
+import Navbar from '../layouts/Navbar'
+
 type QRProps = {
     match: {
         params: any
@@ -28,8 +30,13 @@ const QR = (props: QRProps) => {
     }, [code])
 
     return (
-        <div className="card">
-            { card.text }
+        <div>
+            <Navbar />
+            <div className="card">
+                <div className="card-text">
+                    { card.text }
+                </div>
+            </div>
         </div>
     );
 }

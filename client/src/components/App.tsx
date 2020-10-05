@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Home from './home/Home'
 import QR from './qr/QR'
 import QRCard from './qr/QRCard'
 
-import '../assets/App.css';
+import '../assets/scss/App.scss'
 
 const App = () => {
   return (
@@ -16,7 +16,7 @@ const App = () => {
         <Route path="/qr/:code" exact component={QRCard} />
       </Router>
     </div>
-  );
+  )
 }
 
 export default App;
