@@ -1,14 +1,13 @@
 class ApiError extends Error {
-    name: string
     status: number
     message: string
     date: Date
 
     constructor(status: number, message: string, ...params: any) {
-        super(...params) 
+        super(...params)
 
         // Maintain stack trace
-        if (Error.captureStackTrace) {
+        if(Error.captureStackTrace) {
             Error.captureStackTrace(this, ApiError)
         }
 

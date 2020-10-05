@@ -1,10 +1,8 @@
+import Knex from 'knex'
+
 import constants from '../constants'
 
-interface KnexConfig {
-    [key: string]: any
-}
-
-const knexfile: KnexConfig = {
+const knexfile: Knex.Config = {
     client: 'postgres',
     connection: {
         user:       constants.DB_USERNAME,

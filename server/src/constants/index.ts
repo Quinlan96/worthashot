@@ -1,4 +1,3 @@
-require('dotenv').config({ path: '../../.env'})
 import BASE_DIR from 'app-root-path'
 
 interface Constants {
