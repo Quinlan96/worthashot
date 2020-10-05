@@ -1,5 +1,9 @@
 import Knex from 'knex'
 
+import dotenv from 'dotenv'
+
+dotenv.config({ path: '../../.env' })
+
 import constants from '../constants'
 
 const knexfile: Knex.Config = {

@@ -8,7 +8,6 @@ interface Constants {
     DB_PASSWORD: string
     DB_DATABASE: string
     STORAGE_DIR: string
-    TRACK_BARS: number
 }
 
 const constants: Constants = {
@@ -19,7 +18,6 @@ const constants: Constants = {
     DB_PASSWORD: process.env.DB_PASSWORD,
     DB_DATABASE: process.env.DB_DATABASE,
     STORAGE_DIR: BASE_DIR + '/storage/tracks',
-    TRACK_BARS: parseInt(process.env.TRACK_BARS)
 }
 
 export default constants
