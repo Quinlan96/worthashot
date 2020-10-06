@@ -1,12 +1,128 @@
+@import "../variables.scss";
+
+$numCards: 5;
+$ratio: 3.5/2.5;
+
+.qr-page {
+    height: 100%;
+}
+
+.qr-card {
+    position: relative;
+    background-color: $theme-primary;
+
+    padding: 1rem;
+    height: 100%;
+
+    z-index: 30;
+}
+
+@keyframes swapExit {
+    100% {
+        transform: translate(-50%, -50%) rotate(-30deg);
+        left: 10%;
+    }
+}
+
+@keyframes swapEnter {
+    0% {
+        transform: translate(-50%, -50%) rotate(-30deg);
+        left: 10%;
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        top: calc(50% + ($numCards * .2rem));
+        left: calc(50% + ($numCards * .2rem));
+    }
+}
+
 .card {
     position: absolute;
-    top: 40%;
+
+    top: 50%;
     left: 50%;
-
     transform: translate(-50%, -50%);
+    transform-origin: -25% 125%;
 
-    .card-text {
-        text-align: center;
-        font-size: 1.4rem;
+    border-radius: 1rem;
+    box-sizing: border-box;
+
+    padding: 1rem;
+    background-color: #fff;
+
+    box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, .3);
+
+    z-index: 1;
+
+    transition: top .5s, left .5s;
+    
+    &.exit {
+        animation: swapExit .5s 1;
+    }
+
+    &.enter {
+        animation: swapEnter .75s 1;
+        z-index: -10 !important;
+    }
+
+    @for $i from 1 through $numCards {
+        &.card-#{$i} {
+            top: calc(50% + (.2rem * #{$i - 1}));
+            left: calc(50% + (.2rem * #{$i - 1}));
+            z-index:  -$i;
+        }
+    }
+
+    @include media("<desktop") {
+        width: 500px;
+        height: 500px * $ratio;
+    }
+
+    @include media("<450px") {
+        width: 380px;
+        height: 380px * $ratio;
+    }
+
+    @include media("<400px") {
+        width: 330px;
+        height: 330px * $ratio;
+    }
+
+    @include media("<350px") {
+        width: 280px;
+        height: 280px * $ratio;
+    }
+
+    @include media("<300px") {
+        max-width: 100%;
+    }
+
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+
+        height: 100%;
+
+        .card-text {
+            width: 100%;
+
+            text-align: center;
+            font-size: 1.4rem;
+        }
+
+        .card-refresh {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+
+            .card-refresh-text {
+                margin-top: .3rem;
+                font-size: 1.1rem;
+                font-weight: 600;
+            }
+        }
     }
 }

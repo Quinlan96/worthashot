@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react'
 
 import { get } from '../../services/api'
-
-import Navbar from '../layouts/Navbar'
+import Card from './Card'
 
 type QRProps = {
     match: {
         params: any
     }
-}
-
-type Card = {
-    text: string
 }
 
 const QR = (props: QRProps) => {
@@ -21,6 +16,8 @@ const QR = (props: QRProps) => {
         text: ''
     })
 
+    const [swaps, setSwaps] = useState(0)
+
     useEffect(() => {
         const request = async () => {
             setCard(await get(`/qr/${code}`))
@@ -29,16 +26,27 @@ const QR = (props: QRProps) => {
         request()
     }, [code])
 
+    const handleSwap = () => {
+        setSwaps(swaps + 1)
+
+        console.log(swaps)
+    }
+
+    const cards = []
+
+    for(let i = 1; i <= 5; i++) {
+        const index = i + swaps
+
+        cards.push(<Card key={i} index={index} card={card} handleSwap={handleSwap} />)
+    }
+
     return (
-        <div>
-            <Navbar />
-            <div className="card">
-                <div className="card-text">
-                    { card.text }
-                </div>
+        <div className="qr-page">
+            <div className="qr-card">
+                { cards }
             </div>
         </div>
-    );
+    )
 }
 
 export default QR

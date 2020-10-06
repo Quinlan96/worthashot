@@ -5,7 +5,7 @@ import Home from './home/Home'
 import QR from './qr/QR'
 import QRCard from './qr/QRCard'
 
-import '../assets/scss/App.scss'
+import '../assets/scss/app.scss'
 
 const App = () => {
   return (
