@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSync } from '@fortawesome/free-solid-svg-icons'
 
+import Logo from '../layouts/Logo'
+
 type CardProps = {
     index: number,
     card: any,
@@ -34,6 +36,9 @@ const Card = (props: CardProps) => {
 
     return (
         <div className={classStr}>
+            <div className="card-logo">
+                <Logo />
+            </div>
             <div className="card-content">
                 <div className="card-text">
                     { card.text }
