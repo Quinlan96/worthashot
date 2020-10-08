@@ -28,8 +28,6 @@ const QR = (props: QRProps) => {
 
     const handleSwap = () => {
         setSwaps(swaps + 1)
-
-        console.log(swaps)
     }
 
     const cards = []

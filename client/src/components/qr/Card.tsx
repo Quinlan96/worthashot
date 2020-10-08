@@ -25,8 +25,8 @@ const Card = (props: CardProps) => {
 
             setTimeout(() => {
                 setEnter(false)
-            }, 750)
-        }, 500)
+            }, 500)
+        }, 300)
     }
 
     let classStr = `card card-${5 - (index % 5)}`
