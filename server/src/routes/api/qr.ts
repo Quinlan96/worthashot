@@ -7,6 +7,7 @@ const router = express.Router()
 router.get('/qr/:code', async (req, res, next) => {
     const card = await Card.query()
         .where('code', req.params.code)
+        .withGraphFetched('suggestions')
         .first()
 
     res.json(card)

@@ -6,12 +6,15 @@ import Logo from '../layouts/Logo'
 
 type CardProps = {
     index: number,
-    card: any,
+    swaps: number,
+    card: {
+        suggestions: Array<any>
+    },
     handleSwap: Function
 }
 
 const Card = (props: CardProps) => {
-    const { card, index } = props
+    const { card, index, swaps } = props
     const [exit, setExit] = useState(false)
     const [enter, setEnter] = useState(false)
 
@@ -34,6 +37,12 @@ const Card = (props: CardProps) => {
     if(exit) classStr += ' exit'
     if(enter) classStr += ' enter'
 
+    let text = ''
+
+    if(card.suggestions.length) {
+        text = card.suggestions[swaps % card.suggestions.length].text
+    }
+
     return (
         <div className={classStr}>
             <div className="card-logo">
@@ -41,7 +50,7 @@ const Card = (props: CardProps) => {
             </div>
             <div className="card-content">
                 <div className="card-text">
-                    { card.text }
+                    { text }
                 </div>
                 <div className="card-refresh" onClick={handleSwap}>
                     <FontAwesomeIcon icon={faSync} size="2x" />

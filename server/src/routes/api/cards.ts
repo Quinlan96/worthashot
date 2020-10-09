@@ -2,11 +2,16 @@ import express from 'express'
 import shortid from 'shortid'
 
 import Card from '../../models/Card'
+import Suggestion from '../../models/Suggestion'
 
 const router = express.Router()
 
 router.get('/cards', async (req, res, next) => {
-    const cards = await Card.query()
+    const cards = await Card
+        .query()
+        .withGraphFetched('suggestions')
+
+    console.log(cards)
 
     res.json(cards)
 })
@@ -24,5 +29,16 @@ router.post('/cards', async (req, res, next) => {
 
     res.json(card)
 })
+
+router.post('/cards/:id/suggestions', async (req ,res, next) => {
+    const data: Partial<Suggestion> = {
+        card_id: parseInt(req.params.id),
+        text: req.body.text
+    }
+
+    const suggestion = await Suggestion.query().insertGraph(data)
+
+    res.json(suggestion)
+})  
 
 export default router

@@ -1,13 +1,17 @@
 import { Model } from 'objection'
 
 import Category from './Category'
+import QRCategory from './QRCategory'
+import Suggestion from './Suggestion'
 
 class Card extends Model {
-	id?: number
-	code?: string
-	text?: string
+	id: number
+	code: string
+	text: string
 	notes?: string
-	qr_enabled: boolean
+	qr_enabled?: boolean
+	qr_category_id?: string
+	qr_data?: string
 	created_at: string
 	updated_at: string
 
@@ -18,7 +22,7 @@ class Card extends Model {
         return 'cards'
 	}
 
-    $beforeInsert() {
+	$beforeInsert() {
         this.created_at = new Date().toISOString()
     }
 
@@ -35,7 +39,23 @@ class Card extends Model {
 					from: 'categories.id',
 					to: 'cards.category_id'
 				}
-            }
+			},
+			qrCategory: {
+				relation: Model.BelongsToOneRelation,
+				modelClass: QRCategory,
+				join: {
+					from: 'card_qr_categories.id',
+					to: 'cards.qr_category_id'
+				}
+			},
+			suggestions: {
+				relation: Model.HasManyRelation,
+				modelClass: Suggestion,
+				join: {
+					from: 'card_qr_suggestions.card_id',
+					to: 'cards.id'
+				}
+			}
 		}
 	}
 }

@@ -13,7 +13,8 @@ const QR = (props: QRProps) => {
     const { code } = props.match.params
 
     const [card, setCard] = useState({
-        text: ''
+        text: '',
+        suggestions: []
     })
 
     const [swaps, setSwaps] = useState(0)
@@ -35,7 +36,7 @@ const QR = (props: QRProps) => {
     for(let i = 1; i <= 5; i++) {
         const index = i + swaps
 
-        cards.push(<Card key={i} index={index} card={card} handleSwap={handleSwap} />)
+        cards.push(<Card key={i} index={index} swaps={swaps} card={card} handleSwap={handleSwap} />)
     }
 
     return (
