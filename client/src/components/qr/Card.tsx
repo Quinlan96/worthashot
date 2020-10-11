@@ -14,7 +14,7 @@ type CardProps = {
 }
 
 const Card = (props: CardProps) => {
-    const { card, index, swaps } = props
+    const { card, swaps } = props
     const [exit, setExit] = useState(false)
     const [enter, setEnter] = useState(false)
 
@@ -32,7 +32,9 @@ const Card = (props: CardProps) => {
         }, 300)
     }
 
-    let classStr = `card card-${5 - (index % 5)}`
+    const index = 5 - ((props.index + swaps) % 5)
+
+    let classStr = `card card-${index}`
 
     if(exit) classStr += ' exit'
     if(enter) classStr += ' enter'
@@ -40,7 +42,11 @@ const Card = (props: CardProps) => {
     let text = ''
 
     if(card.suggestions.length) {
-        text = card.suggestions[swaps % card.suggestions.length].text
+        const suggestion = ((index - 1) + swaps) % card.suggestions.length
+
+        text = card.suggestions[suggestion].text
+
+        console.log(index, suggestion, text)
     }
 
     return (

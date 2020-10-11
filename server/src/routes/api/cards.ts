@@ -11,8 +11,6 @@ router.get('/cards', async (req, res, next) => {
         .query()
         .withGraphFetched('suggestions')
 
-    console.log(cards)
-
     res.json(cards)
 })
 
