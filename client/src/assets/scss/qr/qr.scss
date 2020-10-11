@@ -90,6 +90,11 @@ $ratio: 3.5/2.5;
         }
     }
 
+    @include media(">desktop") {
+        width: 500px;
+        height: 500px * $ratio;
+    }
+
     @include media("<desktop") {
         width: 500px;
         height: 500px * $ratio;
